@@ -4,7 +4,7 @@ import { compileRegex } from "./search.js";
 import { records, sort, toggleSort, getVisibleRecords, getStats, getLastSevenDays, settings, addRecord, findRecord, updateRecord, deleteRecord, setRecords, setSettings } from "./state.js";
 import { renderRecords, renderSort, showSearchError, renderDashboard, showStatus, fillSettingsForm, renderCategories,setFormMode } from "./ui.js";
 
-import {loadRecords, saveRecords, loadSettings, saveSettings, loadSeed, downloadJSON, parseImport} from "./storage.js";
+import {loadRecords, saveRecords, loadSettings, saveSettings, loadSeed, downloadJson, parseImport} from "./storage.js";
 
 function showDashboard(){
     renderDashboard(getStats(), getLastSevenDays());
@@ -18,7 +18,12 @@ function showSection(id) {
     if (id === "dashboard") {
         showDashboard();
     }
-    sections.forEach((item) => {
+
+    sections.forEach((section) => {
+    section.hidden = section.id !== id;
+    });
+
+    sectionButtons.forEach((item) => {
         if(item.getAttribute("data-section") === id) {
             item.setAttribute("aria-current", "page");
         }else {
@@ -44,7 +49,6 @@ document.querySelectorAll("form").forEach((form) => {
 
 
 //Form checks and errors
-
 const recordFields = [
     {id: "description", validate: validateDescription },
     {id: "amount", validate: validateAmount},
@@ -133,7 +137,7 @@ document.getElementById("records").addEventListener("click", (event) => {
         return;
     }
     if(button.getAttribute("data-action") === "delete") {
-        if(confirm("Delete this transaction")) {
+        if(confirm("Delete this transaction?")) {
             deleteRecord(record.id);
             saveRecords(records);
             refreshAll();
@@ -248,7 +252,7 @@ document.getElementById("settings-form").addEventListener("submit", () => {
 const newCategory = document.getElementById("new-category");
 
 function showCategoryError(message) {
-    document.getElementById("new-category-error").textContent = messages;
+    document.getElementById("new-category-error").textContent = message;
     newCategory.setAttribute("aria-invalid", message === "" ? "false" : "true");
 }
 
@@ -318,7 +322,7 @@ document.getElementById("import-file").addEventListener("change", async (event) 
     if(result.error) {
         showStatus(result.error);
     } else {
-        setRecords(results.records);
+        setRecords(result.records);
         saveRecords(records);
 
         for (const record of records) {
