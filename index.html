@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Finance Tracker</title>
+    <link rel="stylesheet" href="style.css/main.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header">
+        <div class="topbar">
+        <h1>Student Finance Tracker</h1>
+        <nav aria-label="Sections">
+            <button type="button" data-section="about" aria-controls="about" aria-current="page">About</button>
+            <button type="button" data-section="dashboard" aria-controls="dashboard">Dashboard</button>
+            <button type="button" data-section="records" aria-controls="records">Records</button>
+            <button type="button" data-section="add-edit" aria-controls="add-edit">New Entry</button>
+            <button type="button" data-section="settings" aria-controls="settings">Settings</button>
+        </nav>
+        </div>
+
+    </header>
+
+    <div class="page">
+        <main id="main" tabindex="-1">
+            <section id="about" aria-labelledby="about-heading">
+                <h2 id="about-heading" tabindex="-1">About</h2>
+                <p class="lead">A simple record of what you spend as a student, with totals you can check at a glance.</p>
+
+                <div class="about-grid">
+                    <article class="about-card">
+                        <h3>Saved in francs</h3>
+                        <p>Every amount is stored in Rwandan francs. Totals, sorting, and the spending cap all use that one currency.</p>
+                    </article>
+
+                    <article class="about-card">
+                        <h3>Dollars and euros</h3>
+                        <p>USD and EUR are only for reading the same numbers. Pick the display currency in Settings when you want another view.</p>
+                    </article>
+                </div>
+
+                <h3 class="about-label">Your details</h3>
+                <ul class="contact-cards">
+                    <li>
+                        <p class="label">Github</p>
+                        <p>Github username</p>
+                    </li>
+                    <li>
+                        <p class="label">Email</p>
+                        <p>email@example.com</p>
+                    </li>
+                </ul>
+            </section>
+
+            <section id="dashboard" aria-labelledby="dashboard-heading" hidden>
+                <h2 id="dashboard-heading" tabindex="-1">Dashboard</h2>
+
+                <div class="dashboard-layout">
+                    <div class="stats">
+                        <article class="stat-card">
+                            <h3>Transactions</h3>
+                            <p id="stat-count" class="stat-value">12</p>
+                        </article>
+
+                        <article class="stat-card">
+                            <h3>Total spent </h3>
+                            <p id="stat-total" class="stat-value">240,000 FRW</p>
+                        </article>
+
+                        <article class="stat-card">
+                            <h3>Top category</h3>
+                            <p id="stat-top" class="stat-value">Food</p>
+                        </article>
+                    </div>
+
+                    <figure class="chart-card">
+                        <figcaption>Last 7 days</figcaption>
+                        <ol class="chart" aria-label="Spending chart for today and the last 6 days">
+                            <li>
+                                <div class="bar-track">
+                                    <div class="bar" style="--fill: 0.35">
+                                        <span class="visually-hidden">Oct 8, 18,000 FRW</span>
+                                    </div>
+                                </div>
+
+                                <span class="bar-label">8</span>
+                            </li>
+
+                            <li>
+                                <div class="bar-track">
+                                    <div class="bar" style="--fill: 0.55">
+                                        <span class="visually-hidden">Oct 9, 28,000 FRW</span>
+                                    </div>
+                                </div>
+
+                                <span class="bar-label">9</span>
+                            </li>
+
+                            <li>
+                                <div class="bar-track">
+                                    <div class="bar" style="--fill: 0.2">
+                                        <span class="visually-hidden">Oct 10, 10,000 FRW</span>
+                                    </div>
+                                </div>
+
+                                <span class="bar-label">10</span>
+                            
+                            </li>    
+
+                            <li>
+                                <div class="bar-track">
+                                    <div class="bar" style="--fill: 0.8">
+                                        <span class="visually-hidden">Oct 11, 42,000 FRW</span>
+                                    </div>
+                                </div>
+
+                                <span class="bar-label">11</span>
+
+                            </li>
+
+
+                            <li>
+                                <div class="bar-track">
+                                    <div class="bar" style="--fill: 0.45">
+                                        <span class="visually-hidden">Oct 12, 24,000 FRW</span>
+                                    </div>
+                                </div>
+
+                                <span class="bar-label">12</span>
+
+                            </li>
+
+                            <li>
+                                <div class="bar-track">
+                                    <div class="bar" style="--fill: 0.15">
+                                        <span class="visually-hidden">Oct 13, 8,000 FRW</span>
+                                    </div>
+                                </div>
+
+                                <span class="bar-label">13</span>
+
+                            </li>
+
+                            <li>
+                                <div class="bar-track">
+                                    <div class="bar" style="--fill: 0.62">
+                                        <span class="visually-hidden">Oct 14, 32,000 FRW</span>
+                                    </div>
+                                </div>
+
+                                <span class="bar-label">14</span>
+
+                            </li>
+                        </ol>
+                            
+                    </figure>
+                </div>
+
+                <div class="cap-box">
+                    <h3>Spending cap</h3>
+                    <p id="cap-polite" role="status" aria-live="polite">You are under the cap. 251,500 FRW remaining.</p>
+                    <p id="cap-assertive" role="alert" aria-live="assertive"></p>
+                </div>
+                
+            </section>
+            
+            <section id="records" aria-labelledby="records-heading" hidden>
+                <h2 id="records-heading" tabindex="-1">Records</h2>
+
+                <div class="search-panel" role="search">
+                    <label for="record-search">Search descriptions</label>
+                    <input id="record-search" type="search" name="record-search" autocomplete="off" aria-describedby="search-error">
+                    <label class="check-label" for="search-ignore-case">
+                        <input id="search-ignore-case" type="checkbox" name="search-ignore-case">
+                        Ignore case
+                    </label>
+
+                    <p id="search-error" class="field-message" role="status"></p>
+                    <div class="button-row" role="group" aria-label="Example patterns">
+                        <button type="button" data-sort="date">Sort by date</button>
+                        <button type="button" data-sort="amount">Sort by amount</button>
+                        <button type="button" data-sort="category">Sort by category</button>
+                    </div>
+                </div>
+
+                
+
+                
+
+
+
+
+                
+        
+
+            
+        </main>
+    </div>
+
+
+    
+</body>
+</html>
