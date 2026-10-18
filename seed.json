@@ -1,0 +1,119 @@
+[
+  {
+    "id": "txn_0001",
+    "description": "Lunch at cafeteria",
+    "amount": 3500,
+    "category": "Food",
+    "date": "2026-10-18",
+    "createdAt": "2026-10-18T10:00:00.000Z",
+    "updatedAt": "2026-10-18T10:00:00.000Z"
+  },
+  {
+    "id": "txn_0002",
+    "description": "Coffee with friends",
+    "amount": 4200.5,
+    "category": "Food",
+    "date": "2026-10-17",
+    "createdAt": "2026-10-17T15:30:00.000Z",
+    "updatedAt": "2026-10-17T15:30:00.000Z"
+  },
+  {
+    "id": "txn_0003",
+    "description": "Tea at the library",
+    "amount": 1500,
+    "category": "Food",
+    "date": "2026-10-16",
+    "createdAt": "2026-10-16T14:00:00.000Z",
+    "updatedAt": "2026-10-16T14:00:00.000Z"
+  },
+  {
+    "id": "txn_0004",
+    "description": "Calculus textbook",
+    "amount": 45000,
+    "category": "Books",
+    "date": "2026-10-15",
+    "createdAt": "2026-10-15T09:00:00.000Z",
+    "updatedAt": "2026-10-15T09:00:00.000Z"
+  },
+  {
+    "id": "txn_0005",
+    "description": "Bus pass for the week",
+    "amount": 12000,
+    "category": "Transport",
+    "date": "2026-10-14",
+    "createdAt": "2026-10-14T07:45:00.000Z",
+    "updatedAt": "2026-10-14T07:45:00.000Z"
+  },
+  {
+    "id": "txn_0006",
+    "description": "Movie night",
+    "amount": 8000,
+    "category": "Entertainment",
+    "date": "2026-10-13",
+    "createdAt": "2026-10-13T19:00:00.000Z",
+    "updatedAt": "2026-10-13T19:00:00.000Z"
+  },
+  {
+    "id": "txn_0007",
+    "description": "Library late fee",
+    "amount": 0.5,
+    "category": "Fees",
+    "date": "2026-10-12",
+    "createdAt": "2026-10-12T11:20:00.000Z",
+    "updatedAt": "2026-10-12T11:20:00.000Z"
+  },
+  {
+    "id": "txn_0008",
+    "description": "Phone airtime",
+    "amount": 2500,
+    "category": "Other",
+    "date": "2026-10-18",
+    "createdAt": "2026-10-18T18:00:00.000Z",
+    "updatedAt": "2026-10-18T18:00:00.000Z"
+  },
+  {
+    "id": "txn_0009",
+    "description": "Semester registration fee",
+    "amount": 250000,
+    "category": "Fees",
+    "date": "2025-12-31",
+    "createdAt": "2025-12-31T08:00:00.000Z",
+    "updatedAt": "2025-12-31T08:00:00.000Z"
+  },
+  {
+    "id": "txn_0010",
+    "description": "Leap day dinner",
+    "amount": 18000,
+    "category": "Food",
+    "date": "2024-02-29",
+    "createdAt": "2024-02-29T19:30:00.000Z",
+    "updatedAt": "2024-02-29T19:30:00.000Z"
+  },
+  {
+    "id": "txn_0011",
+    "description": "Moto ride home",
+    "amount": 1800,
+    "category": "Transport",
+    "date": "2026-10-17",
+    "createdAt": "2026-10-17T20:10:00.000Z",
+    "updatedAt": "2026-10-17T20:10:00.000Z"
+  },
+  {
+    "id": "txn_0012",
+    "description": "Notebook and pens",
+    "amount": 6500,
+    "category": "Books",
+    "date": "2026-10-16",
+    "createdAt": "2026-10-16T12:00:00.000Z",
+    "updatedAt": "2026-10-16T12:00:00.000Z"
+  },
+  {
+    "id": "txn_0013",
+    "description": "Concert ticket",
+    "amount": 2500.0,
+    "category": "Entertainment",
+    "date": "2026-10-15",
+    "createdAt": "2026-10-15T17:00:00.000Z",
+    "updatedAt": "2026-10-15T17:00:00.000Z"
+  }
+]
