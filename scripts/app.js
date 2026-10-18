@@ -1,7 +1,10 @@
 
 import {validateAmount, validateCategory, validateDate, validateDescription} from "./validator.js";
+import { compileRgex } from "./search.js";
+import { records, sort, toggleSort, getVisibleRecords } from "./state.js";
+import { renderRecords, renderSort, showSearchError } from "./ui.js";
 
-//Connecting buttons and forms on the page to the rest of the app
+//Connecting buttons 
 const sectionButtons = document.querySelectorAll("nav [data-section]");
 const sections = document.querySelectorAll("main > section");
 
@@ -18,10 +21,7 @@ sectionButtons.forEach((button) => {
             item.removeAttribute("aria-current");
         }
     });
-    const heading =document.getElementById(id).querySelector("h2");
-    if (heading) {
-        heading.focus();
-    }
+    document.getElementById(id).querySelector("h2").focus();
 });
 });
 
@@ -71,3 +71,41 @@ document.getElementById("record-form").addEventListener("submit", () => {
 
 });
 
+
+const searchInput = document.getElementById("record-search");
+const ignoreCase = document.getElementById("search-ignore-case");
+
+function showRecords() {
+    let regex = null;
+    if (searchInput.value !== "") {
+        regex = compileRegex(searchInput.value, ignoreCase.checked);
+        if (regex ===null) {
+            showSearchError("Invalid pattern");
+            return;
+        }
+    }
+    showSearchError("");
+    renderRecords(getVisibleRecords(regex), regex);
+}
+
+
+searchInput.addEventListener("input", showRecords);
+ignoreCase.addEventListener("change", showRecords);
+
+document.querySelectorAll("[data-pattern]").forEach((button) => {
+    button.addEventListener("click", () => {
+        searchInput.value = button.getAttribute("data-pattern");
+        showRecords();
+    });
+});
+
+["date", "description", "amount"].forEach((key) => {
+    document.getElementById("sort-" + key).addEventListener("click", () => {
+        toggleSort(key);
+        renderSort(sort);
+        showRecords();
+    });
+});
+
+renderSort(sort);
+showRecords();

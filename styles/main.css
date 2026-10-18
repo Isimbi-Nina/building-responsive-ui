@@ -199,6 +199,7 @@ nav button{
 }
 
 nav button[aria-current="page"],
+button[aria-pressed="true"]
 button[type="submit"] {
     background: var(--accent);
     border-color: var(--accent);

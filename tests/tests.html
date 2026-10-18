@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,6 +17,7 @@
             validateDate,
             validateCategory
         } from "./scripts/validator.js";
+        import {compileRegex, highlight } from "./scripts/search.js";
 
         const tests = [
             [validateAmount, "12.50", true],
@@ -38,18 +39,30 @@
         ];
 
         let failed=0;
-        for(const [check, value, shouldPass] of tests) {
-            const passed = (check(value) === "") === shouldPass;
+        function report(passed, name) {    
             if(!passed) failed++;
             const li = document.createElement("li");
-            li.textContent = (passed ? "Pass" : "Fail") + ": " + check.name + ' "' + value + '"';
+            li.textContent = (passed ? "Pass" : "Fail") + ": " + name;
             document.getElementById("results").appendChild(li);
         }
 
+        for (const [check, value, shouldPass] of tests) {
+            report ((check(value) === "") === shouldPass, check.name + ' "' + value + ' "');
+        }
+
+        const searchTests = [
+            ["bad pattern returns null", compileRegex("(coffee, false))]
+
+
+        ];
+        for (const [name, actual, expected] of searchTests) {
+            report(actual ===expected, "search: " + name);
+        }
+
         document.getElementById("summary").textContent = 
-        (tests.length - failed) + " passed, " + failed + " failed";
+        (tests.length + searchTests.length - failed) + " passed, " + failed + " failed";
 
     </script>
     
 </body>
-</html>
+</html> -->

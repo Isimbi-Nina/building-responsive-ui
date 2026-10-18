@@ -179,9 +179,9 @@
 
                     <p id="search-error" class="field-message" role="status"></p>
                     <div class="button-row" role="group" aria-label="Example patterns">
-                        <button type="button" data-pattern="/\.\d{2}\b/">Cents</button>
-                        <button type="button" data-pattern="/(coffee|tea)/i">Drinks</button>
-                        <button type="button" data-pattern="/\b(\w+)\s+\1\b/">Repeated word</button>
+                        <button type="button" data-pattern="\.\d{2}\b">Cents</button>
+                        <button type="button" data-pattern="[Cc]offee|[Tt]ea">Drinks</button>
+                        <button type="button" data-pattern="\b(\w+)\s+\1\b">Repeated word</button>
                     </div>
                 </div>
 
@@ -191,10 +191,10 @@
                     <button type="button" id="sort-amount" aria-pressed="false">Amount</button>
                 </div>
 
-                <p id="records-empty" hidden>No transactions match your search criteria.</p>
+                <p id="records-empty" role="status" hidden>No transactions to show.</p>
 
-                <ul class="record-cards">
-                    <li class="record-card">
+                <ul id="record-cards" class="record-cards">
+                    <!-- <li class="record-card">
                         <h3>Lunch at caffeteria</h3>
                         <p><span class="label">Amount</span>3,500 FRW</p>
                         <p><span class="label">Category</span>Food</p>
@@ -203,9 +203,9 @@
                             <button type="button" aria-label="Edit Lunch at caffeteria">Edit</button>
                             <button type="button" aria-label="Delete Lunch at caffeteria">Delete</button>
                         </div>
-                    </li>
+                    </li> -->
 
-                    <li class="record-card">
+                    <!-- <li class="record-card">
                         <h3>Tea at the library</h3>
                         <p><span class="label">Amount</span> 800 FRW</p>
                         <p><span class="label">Category</span> Food</p>
@@ -214,7 +214,7 @@
                             <button type="button" aria-label="Edit Tea at the library">Edit</button>
                             <button type="button" aria-label="Delete Tea at the library">Delete</button>
                         </div>
-                    </li>
+                    </li> -->
                 </ul>
             
                 <table class="record-table">
@@ -229,8 +229,8 @@
                         </tr>
                     </thead>
 
-                    <tbody>
-                        <tr>
+                    <tbody id="record-rows">
+                        <!-- <tr>
                             <td>Lunch at caffeteria</td>
                             <td>3,500 FRW</td>
                             <td>Food</td>
@@ -241,9 +241,9 @@
                                     <button type="button" aria-label="Delete Lunch at caffeteria">Delete</button>
                                 </div>
                             </td>
-                        </tr>
+                        </tr> -->
 
-                        <tr>
+                        <!-- <tr>
                             <td>Coffee with friends</td>
                             <td>1,500 FRW</td>
                             <td>Food</td>
@@ -254,9 +254,9 @@
                                     <button type="button" aria-label="Delete Coffee with friends">Delete</button>
                                 </div>
                             </td>
-                        </tr>
+                        </tr> -->
 
-                        <tr>
+                        <!-- <tr>
                             <td>Tea at the library</td>
                             <td>800 FRW</td>
                             <td>Food</td>
@@ -267,7 +267,7 @@
                                     <button type="button" aria-label="Delete Tea at the library">Delete</button>
                                 </div>
                             </td>
-                        </tr>
+                        </tr> -->
 
                     </tbody>
                 </table>
