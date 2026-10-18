@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Finance Tracker</title>
+    <title>SpendSmart</title>
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
@@ -11,7 +11,7 @@
 
     <header class="site-header">
         <div class="topbar">
-        <h1>Student Finance Tracker</h1>
+        <h1>SpendSmart</h1>
         <nav aria-label="Sections">
             <button type="button" data-section="about" aria-controls="about" aria-current="page">About</button>
             <button type="button" data-section="dashboard" aria-controls="dashboard">Dashboard</button>
@@ -102,12 +102,7 @@
                         Ignore case
                     </label>
 
-                    <p id="search-error" class="field-message" role="status"></p>
-                    <div class="button-row" role="group" aria-label="Example patterns">
-                        <button type="button" data-pattern="\.\d{2}\b">Cents</button>
-                        <button type="button" data-pattern="[Cc]offee|[Tt]ea">Drinks</button>
-                        <button type="button" data-pattern="\b(\w+)\s+\1\b">Repeated word</button>
-                    </div>
+                    <p id="search-error" class="field-error" role="status"></p>
                 </div>
 
                 <div class="button-row" role="group" aria-label="Sort records">
@@ -152,15 +147,15 @@
 
                     <div class="field">
                         <label for="amount">Amount (FRW)</label>
-                        <input id="amount" type="number" name="amount" inputmode="decimal" autocomplete="off" aria-describedby="amount-hint amount-error" aria-invalid="false" required>
-                        <p id="amount-hint" class="field-hint">Use a number such as 3500. Do not start with a zero unless the amount is 0.</p>
+                        <input id="amount" type="text" name="amount" inputmode="decimal" autocomplete="off" aria-describedby="amount-hint amount-error" aria-invalid="false" required>
+                        <p id="amount-hint" class="hint">Use a number such as 3500. Do not start with a zero unless the amount is 0.</p>
                         <p id="amount-error" class="field-error"></p>
                     </div>
 
                     <div class="field">
                         <label for="date">Date</label>
-                        <input id="date" type="date" name="date" inputmode="numeric" placeholder="YYYY-MM-DD" autocomplete="off" aria-invalid="false" aria-describedby="date-error date-hint" required>
-                        <p id="date-hint" class="field-hint">Enter the date in YYYY-MM-DD format</p>
+                        <input id="date" type="text" name="date" inputmode="numeric" placeholder="YYYY-MM-DD" autocomplete="off" aria-invalid="false" aria-describedby="date-error date-hint" required>
+                        <p id="date-hint" class="hint">Enter the date in YYYY-MM-DD format</p>
                         <p id="date-error" class="field-error"></p>
                     </div>
 
@@ -180,7 +175,7 @@
 
                     <div class="button-row">
                         <button type="submit" id="record-submit">Add Transaction</button>
-                        <button type="button" id="record-cancel">Cancel</button>
+                        <button type="button" id="record-cancel" hidden>Cancel</button>
                     </div>
                 </form>
             </section>
@@ -191,7 +186,7 @@
                 <form id="settings-form">
                     <div class="field">
                         <label for="spending-cap">Spending cap (FRW)</label>
-                        <input id="spending-cap" type="number" name="spending-cap" inputmode="decimal" value="500000" autocomplete="off" aria-describedby="spending-cap-erorr" aria-invalid="false">
+                        <input id="spending-cap" type="text" name="spending-cap" inputmode="decimal" value="500000" autocomplete="off" aria-describedby="spending-cap-erorr" aria-invalid="false">
                         <p id="spending-cap-error" class="field-error"></p>
                     </div>
 
@@ -202,16 +197,16 @@
 
                         <div class="field">
                             <label for="rate-frw">FRW</label>
-                            <input id="rate-frw" type="number" name="rate-frw" value="1" readonly>
+                            <input id="rate-frw" type="text" name="rate-frw" value="1" readonly>
                         </div>
                         <div class="field">
                             <label for="rate-usd">USD</label>
-                            <input id="rate-usd" type="number" name="rate-usd" inputmode="decimal" value="0.00069" autocomplete="off" aria-describedby="rate-usd-error" aria-invalid="false">
+                            <input id="rate-usd" type="text" name="rate-usd" inputmode="decimal" value="0.00069" autocomplete="off" aria-describedby="rate-usd-error" aria-invalid="false">
                             <p id="rate-usd-error" class="field-error"></p>
                         </div>
                         <div class="field">
                             <label for="rate-eur">EUR</label>
-                            <input id="rate-eur" type="number" name="rate-eur" inputmode="decimal" value="0.00064" autocomplete="off" aria-describedby="rate-eur-error" aria-invalid="false">
+                            <input id="rate-eur" type="text" name="rate-eur" inputmode="decimal" value="0.00064" autocomplete="off" aria-describedby="rate-eur-error" aria-invalid="false">
                             <p id="rate-eur-error" class="field-error"></p>
                         </div>
 
@@ -260,7 +255,7 @@
                             <input id="new-category" type="text" name="new-category" autocomplete="off" aria-describedby="new-category-error" aria-invalid="false">
                             <p id="new-category-error" class="field-error"></p>
                         </div>
-                        <button type="button" id="add-category">Add</button>
+                        <button type="submit" id="add-category">Add category</button>
                     </fieldset>
 
                     <fieldset>
@@ -279,7 +274,6 @@
     </div>
 
     <footer class="site-footer">
-        <p>Amounts are stored in FRW.</p>
         <p id="status" class="status" role="status" aria-live="polite"></p>
     </footer>
 

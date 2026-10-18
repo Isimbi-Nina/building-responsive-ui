@@ -1,4 +1,4 @@
-import { validateDescription, validateAmount, validateDate, validateCategory } from "./validators.js";
+import { validateDescription, validateAmount, validateDate, validateCategory } from "./validator.js";
 
 const RECORDS_KEY = "finance:records";
 const SETTINGS_KEY= "finance:settings";
@@ -35,7 +35,7 @@ export async function loadSeed() {
         if(!response.ok) {
             return [];
         }
-        const result = paarseImport(await response.text());
+        const result = parseImport(await response.text());
         return result.error? [] : result.records;
     } catch {
         return [];
@@ -89,7 +89,7 @@ export function exportJson(list) {
 
 }
 
-export function downloadJSON(list) {
+export function downloadJson(list) {
     const blob = new Blob([exportJson(list)], {type: "application/json"});
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
@@ -139,10 +139,10 @@ export function parseImport(text) {
     try{
         data= JSON.parse(text);
     } catch {
-        return {error: "Invalid JSON: expected a list of records"};
+        return {error: "Invalid JSON"};
     }
     if (!Array.isArray(data)) {
-        return {error: "Invalid JSON: expected a list of records"};
+        return {error: "Invalid JSON: expected a list of records."};
     }
     const ids =  new Set();
     const now =  new Date().toISOString();
@@ -153,7 +153,7 @@ export function parseImport(text) {
             return {error: "Invalid record " + (i + 1) + ": " + problem};
         }
         if(ids.has(data[i].id)) {
-            return { error: "Invalid record" + (i + 1) + ": the id" + data[i].id + " is used twice."};
+            return { error: "Invalid record " + (i + 1) + ": the id " + data[i].id + " is used twice."};
         }
         ids.add(data[i].id);
         records.push({

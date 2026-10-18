@@ -1,4 +1,3 @@
-
 import {validateAmount, validateCategory, validateDate, validateDescription, validateRate} from "./validator.js";
 import { compileRegex } from "./search.js";
 import { records, sort, toggleSort, getVisibleRecords, getStats, getLastSevenDays, settings, addRecord, findRecord, updateRecord, deleteRecord, setRecords, setSettings } from "./state.js";

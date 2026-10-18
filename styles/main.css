@@ -199,7 +199,7 @@ nav button{
 }
 
 nav button[aria-current="page"],
-button[aria-pressed="true"]
+button[aria-pressed="true"],
 button[type="submit"] {
     background: var(--accent);
     border-color: var(--accent);
@@ -289,7 +289,7 @@ fieldset {
     color: var(--muted);
     font-size: 0.85rem;
     font-weight: 650;
-    letter-spacing: 0.04rem;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
 }
 

@@ -1,4 +1,4 @@
-export function compileRgex(input, ignoreCase) {
+export function compileRegex(input, ignoreCase) {
     try{
         return new RegExp(input, ignoreCase ? "gi" : "g");
     }catch {
@@ -8,10 +8,10 @@ export function compileRgex(input, ignoreCase) {
 
 export function escapeHtml(text){
     return text
-    .replace(/&/g, "&amp")
-    .replace(/</g, "&lt")
-    .replace(/>/g, "&gt")
-    .replace(/"/g, "&quot");
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
 }
 
 export function highlight(text, regex) {
@@ -22,5 +22,5 @@ export function highlight(text, regex) {
     const marked = text.replace(regex, "\u0001$&\u0002");
     return escapeHtml(marked)
     .replaceAll("\u0001", "<mark>")
-    .replaceAll("\u0002", "</mark>")
+    .replaceAll("\u0002", "</mark>");
 }

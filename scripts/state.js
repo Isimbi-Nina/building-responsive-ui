@@ -26,7 +26,7 @@ function compare(a, b) {
 
 export function getVisibleRecords(regex) {
     const matching = records.filter((record) => {
-        return regex ===null || record.decription.search(regex) !== -1;
+        return regex === null || record.description.search(regex) !== -1;
     });
     return matching.sort(compare);
 }
@@ -45,7 +45,7 @@ function nextId() {
 }
 
 export function addRecord(fields) {
-    const now = newDate().toISOString();
+    const now = new Date().toISOString();
     const record = {
         id: nextId(),
         description: fields.description,
@@ -72,7 +72,7 @@ export function updateRecord(id, fields){
     record.amount= fields.amount;
     record.category = fields.category;
     record.date = fields.date;
-    record.updatedAt = newDate().toISOString();
+    record.updatedAt = new Date().toISOString();
 }
 
 export function deleteRecord(id) {
@@ -132,7 +132,8 @@ export function getStats() {
         count : records.length,
         total,
         topCategory,
-        cap: settings.cap - total
+        cap: settings.cap,
+        remaining: settings.cap - total
     };
 }
 
