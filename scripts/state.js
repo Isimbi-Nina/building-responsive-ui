@@ -30,3 +30,55 @@ export function getVisibleRecords(regex) {
     });
     return matching.sort(compare);
 }
+
+
+export const settings = {cap: 500000 };
+
+function sumAmounts(list) {
+    let total = 0;
+    for (const record of list) {
+        total += record.amount;
+    }
+    return total;
+}
+
+function datekey(date) {
+    const month =  String(date.getMonth() + 1).padStart(2,"0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return date.getFullYear() + "-" + month + "-" + day;
+}
+
+export function getStats() {
+    const totals ={};
+    for (const record of records) {
+        totals[record.category] = (totals[record.category] || 0) + record.amount;
+    }
+    let topCategory = "None";
+    let topSum = 0;
+    for (const category in totals) {
+        if (totals[category] > topSum) {
+            topCategory = category;
+            topSum = totals[category];
+        }
+    }
+
+    const total =  sumAmounts(records);
+    return {
+        count : records.length,
+        total,
+        topCategory,
+        cap: settings.cap - total
+    };
+}
+
+export function getLastSevenDays() {
+    const days = [];
+    for (let back=6; back >=0; back--) {
+        const date = new Date();
+        date.setDate(date.getDate() - back);
+        const key = datekey(date);
+        const total = sumAmounts(records.filter((record) => record.date ===key));
+        days.push({date, key, total});
+    }
+    return days;
+}

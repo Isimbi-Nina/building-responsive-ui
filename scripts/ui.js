@@ -1,4 +1,3 @@
-import { escape } from "validator";
 import { highlight, escapeHtml } from "./search.js";
 
 const cardList = document.getElementById("record-cards");
@@ -73,4 +72,39 @@ export function showSearchError(message) {
     .getElementById("record-search")
     .setAttribute("aria-invalid", message !== "");
     
+}
+
+export function renderDashboard (stats, days) {
+    document.getElementById("stat-count").textContent = stats.count;
+    document.getElementById("stat-total").textContent = formatAmount(stats.total);
+    dosument.getElementById("stat-top").textContent = stats.topCategory;
+
+    let biggest=0;
+    for (const day of days) {
+        biggest = Math.max(biggest, day.total);
+    }
+    document.querySelector(".chart").innerHTML = days.map((day) => {
+        const fill = biggest === 0 ? 0 : day.total / biggest;
+        const name = day.date.toLocaleDateString("en-US", {month: "short" , day: "numeric"});
+        return
+        `<li>
+        <div class="bar-track">
+        <div class="bar" style="--fill: ${fill}">
+        <span class="visually-hidden">${name}, ${formatAmount(day.total)}</span>
+        </div>
+        </div>
+        <span class="bar-label">${day.date.getDate()}</span>        
+        </li>`;
+    }).join("");
+
+    const polite = document.getElementById("cap-polite");
+    const assertive = document.getElementById("cap-assertive");
+    if(stats.remaining >= 0) {
+      polite.textContent = "You are under the cap." + formatAmount(stats.remaining) + "remaining.";
+      assertive.textContent = "";
+    }else {
+      assertive.textContent = "You are over the cap by " + formatAmount(-stats.remaining) + ".";
+      polite.textContent= " "
+    }
+
 }

@@ -1,8 +1,12 @@
 
 import {validateAmount, validateCategory, validateDate, validateDescription} from "./validator.js";
-import { compileRgex } from "./search.js";
-import { records, sort, toggleSort, getVisibleRecords } from "./state.js";
-import { renderRecords, renderSort, showSearchError } from "./ui.js";
+import { compileRegex } from "./search.js";
+import { records, sort, toggleSort, getVisibleRecords, getStats, getLastSevenDays } from "./state.js";
+import { renderRecords, renderSort, showSearchError, renderDashboard } from "./ui.js";
+
+function showDashboard(){
+    renderDashboard(getStats(), getLastSevenDays());
+}
 
 //Connecting buttons 
 const sectionButtons = document.querySelectorAll("nav [data-section]");
@@ -11,6 +15,9 @@ const sections = document.querySelectorAll("main > section");
 sectionButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const id = button.getAttribute("data-section");
+    if (id === "dashboard") {
+        showDashboard();
+    }
     sections.forEach((section) => {
         section.hidden = section.id !== id;
     });
@@ -109,3 +116,4 @@ document.querySelectorAll("[data-pattern]").forEach((button) => {
 
 renderSort(sort);
 showRecords();
+showDashboard();
