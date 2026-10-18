@@ -1,4 +1,5 @@
 import { highlight, escapeHtml } from "./search.js";
+import { settings } from "./state.js";
 
 const cardList = document.getElementById("record-cards");
 const tableBody = document.getElementById("record-rows");
@@ -7,7 +8,51 @@ const emptyMessage = document.getElementById("record-empty");
 const sortLabels = {date: "Date", desciption: "Description", amount:"Amount"};
 
 function formatAmount(amount) {
-    return amount.toLocaleString("en-US") + " FRW";
+    const code = settings.displayCurrency;
+    const rate = settings.rates[code] || 1;
+
+    const decimals = code === settings.baseCurrency ? 0 :2;
+    return (amount * rate).toLocaleString("en-US", {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: 2
+    }) + " " + code;
+}
+
+export function showStatus(message) {
+    document.getElementById("status").textContent = message;
+}
+
+export function renderCategories(categories) {
+    document.getElementById("category-list").innerHTML = categories.map((name) => {
+        const safe =escapeHtml(name);
+        return
+        `<li>
+        <span> ${safe} </span>
+        <button type="button" data-remove-category="${safe}">Remove ${safe}</button>
+        </li>`;
+    }).join("");
+
+    const select = document.getElementById("category");
+    const chosen = select.value;
+    select.innerHTML = '<option value""> Choose a category</option>' + categories.map((name) => {
+        const safe = escapeHtml(name);
+        return `<option value="${safe}">${safe}</option>`;
+    }).join("");
+    select.value = chosen;
+}
+
+export function setFormMode(editing) {
+    document.getElementById("add-edit-heading").textContent = editing ? "Edit entry": "New entry";
+    document.getElementById("record-submit").textContent = editing ? "Update transaction " : "Add transaction";
+    document.getElementById("record-cancel").hidden = !editing;
+}
+
+export function fillSettingsForm(values){
+    document.getElementById("spending-cap").value = values.cap;
+    document.getElementById("rate-usd").value = values.rates.USD;
+    document.getElementById("rate-eur").value = values.rates.EUR;
+    document.getElementById("display-currency").value = values.displayCurrency;
+
 }
 
 function buttonsHtml(record) {

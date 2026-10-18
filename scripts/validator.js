@@ -4,9 +4,21 @@ export const PATTERNS = {
     repeatedWord: /\b(\w+)\s+\1\b/i,
     amount: /^(0|[1-9]\d*)(\.\d{1,2})?$/,
     date: /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/,
-    category: /^[A-Za-z]+(?:[ -][A-Za-z]+)*$/
+    category: /^[A-Za-z]+(?:[ -][A-Za-z]+)*$/,
+    rate: /^(?:\d+\.?\d*|\.\d+)$/
 
+};
+
+export function validateRate(value) {
+    if (value === "") {
+        return "Enter a rate.";
+    }
+    if(!PATTERNS.rate.test(value) || Number(value) <=0) {
+        return "Use a number above 0, for example 0.00069"
+    }
+    return "";
 }
+
 
 
 export function validateDescription(value) {

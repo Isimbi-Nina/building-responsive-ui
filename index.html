@@ -78,81 +78,6 @@
                     <figure class="chart-card">
                         <figcaption>Last 7 days</figcaption>
                         <ol class="chart" aria-label="Spending chart for today and the last 6 days">
-                            <!-- <li>
-                                <div class="bar-track">
-                                    <div class="bar" style="--fill: 0.35">
-                                        <span class="visually-hidden">Oct 8, 18,000 FRW</span>
-                                    </div>
-                                </div>
-
-                                <span class="bar-label">8</span>
-                            </li> -->
-
-                            <!-- <li>
-                                <div class="bar-track">
-                                    <div class="bar" style="--fill: 0.55">
-                                        <span class="visually-hidden">Oct 9, 28,000 FRW</span>
-                                    </div>
-                                </div> -->
-
-                                <!-- <span class="bar-label">9</span>
-                            </li>
-
-                            <li>
-                                <div class="bar-track">
-                                    <div class="bar" style="--fill: 0.2">
-                                        <span class="visually-hidden">Oct 10, 10,000 FRW</span>
-                                    </div>
-                                </div>
-
-                                <span class="bar-label">10</span>
-                            
-                            </li>    
-
-                            <li>
-                                <div class="bar-track">
-                                    <div class="bar" style="--fill: 0.8">
-                                        <span class="visually-hidden">Oct 11, 42,000 FRW</span>
-                                    </div>
-                                </div>
-
-                                <span class="bar-label">11</span>
-
-                            </li>
-
-
-                            <li>
-                                <div class="bar-track">
-                                    <div class="bar" style="--fill: 0.45">
-                                        <span class="visually-hidden">Oct 12, 24,000 FRW</span>
-                                    </div>
-                                </div>
-
-                                <span class="bar-label">12</span>
-
-                            </li>
-
-                            <li>
-                                <div class="bar-track">
-                                    <div class="bar" style="--fill: 0.15">
-                                        <span class="visually-hidden">Oct 13, 8,000 FRW</span>
-                                    </div>
-                                </div>
-
-                                <span class="bar-label">13</span>
-
-                            </li>
-
-                            <li>
-                                <div class="bar-track">
-                                    <div class="bar" style="--fill: 0.62">
-                                        <span class="visually-hidden">Oct 14, 32,000 FRW</span>
-                                    </div>
-                                </div>
-
-                                <span class="bar-label">14</span>
-
-                            </li> -->
                         </ol>
                             
                     </figure>
@@ -194,27 +119,6 @@
                 <p id="records-empty" role="status" hidden>No transactions to show.</p>
 
                 <ul id="record-cards" class="record-cards">
-                    <!-- <li class="record-card">
-                        <h3>Lunch at caffeteria</h3>
-                        <p><span class="label">Amount</span>3,500 FRW</p>
-                        <p><span class="label">Category</span>Food</p>
-                        <p><span class="label">Date</span> <time datetime="2026-10-16">2026-10-16</time></p>
-                        <div class="button-row">
-                            <button type="button" aria-label="Edit Lunch at caffeteria">Edit</button>
-                            <button type="button" aria-label="Delete Lunch at caffeteria">Delete</button>
-                        </div>
-                    </li> -->
-
-                    <!-- <li class="record-card">
-                        <h3>Tea at the library</h3>
-                        <p><span class="label">Amount</span> 800 FRW</p>
-                        <p><span class="label">Category</span> Food</p>
-                        <p><span class="label">Date</span> <time datetime="2026-10-17">2026-10-17</time></p>
-                        <div class="button-row">
-                            <button type="button" aria-label="Edit Tea at the library">Edit</button>
-                            <button type="button" aria-label="Delete Tea at the library">Delete</button>
-                        </div>
-                    </li> -->
                 </ul>
             
                 <table class="record-table">
@@ -230,44 +134,6 @@
                     </thead>
 
                     <tbody id="record-rows">
-                        <!-- <tr>
-                            <td>Lunch at caffeteria</td>
-                            <td>3,500 FRW</td>
-                            <td>Food</td>
-                            <td><time datetime="2026-10-16">2026-10-16</time></td>
-                            <td>
-                                <div class="button-row">
-                                    <button type="button" aria-label="Edit Lunch at caffeteria">Edit</button>
-                                    <button type="button" aria-label="Delete Lunch at caffeteria">Delete</button>
-                                </div>
-                            </td>
-                        </tr> -->
-
-                        <!-- <tr>
-                            <td>Coffee with friends</td>
-                            <td>1,500 FRW</td>
-                            <td>Food</td>
-                            <td><time datetime="2026-10-16">2026-10-16</time></td>
-                            <td>
-                                <div class="button-row">
-                                    <button type="button" aria-label="Edit Coffee with friends">Edit</button>
-                                    <button type="button" aria-label="Delete Coffee with friends">Delete</button>
-                                </div>
-                            </td>
-                        </tr> -->
-
-                        <!-- <tr>
-                            <td>Tea at the library</td>
-                            <td>800 FRW</td>
-                            <td>Food</td>
-                            <td><time datetime="2026-10-17">2026-10-17</time></td>
-                            <td>
-                                <div class="button-row">
-                                    <button type="button" aria-label="Edit Tea at the library">Edit</button>
-                                    <button type="button" aria-label="Delete Tea at the library">Delete</button>
-                                </div>
-                            </td>
-                        </tr> -->
 
                     </tbody>
                 </table>
@@ -325,7 +191,8 @@
                 <form id="settings-form">
                     <div class="field">
                         <label for="spending-cap">Spending cap (FRW)</label>
-                        <input id="spending-cap" type="number" name="spending-cap" inputmode="decimal" value="500000" autocomplete="off">
+                        <input id="spending-cap" type="number" name="spending-cap" inputmode="decimal" value="500000" autocomplete="off" aria-describedby="spending-cap-erorr" aria-invalid="false">
+                        <p id="spending-cap-error" class="field-error"></p>
                     </div>
 
                     <fieldset>
@@ -339,11 +206,13 @@
                         </div>
                         <div class="field">
                             <label for="rate-usd">USD</label>
-                            <input id="rate-usd" type="number" name="rate-usd" inputmode="decimal" value="0.00069" autocomplete="off">
+                            <input id="rate-usd" type="number" name="rate-usd" inputmode="decimal" value="0.00069" autocomplete="off" aria-describedby="rate-usd-error" aria-invalid="false">
+                            <p id="rate-usd-error" class="field-error"></p>
                         </div>
                         <div class="field">
                             <label for="rate-eur">EUR</label>
-                            <input id="rate-eur" type="number" name="rate-eur" inputmode="decimal" value="0.00064" autocomplete="off">
+                            <input id="rate-eur" type="number" name="rate-eur" inputmode="decimal" value="0.00064" autocomplete="off" aria-describedby="rate-eur-error" aria-invalid="false">
+                            <p id="rate-eur-error" class="field-error"></p>
                         </div>
 
                         </div>
