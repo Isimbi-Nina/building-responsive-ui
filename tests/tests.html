@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests</title>
+</head>
+<body>
+    <h1>Validation Tests</h1>
+    <p id="summary"></p>
+    <ul id="results"></ul>
+
+    <script type="module">
+        import {
+            validateDescription,
+            validateAmount,
+            validateDate,
+            validateCategory
+        } from "./scripts/validator.js";
+
+        const tests = [
+            [validateAmount, "12.50", true],
+            [validateAmount, "0", true],
+            [validateAmount, "01", false],
+            [validateAmount, "12.345", false],
+
+            [validateDate, "2026-02-29", true],
+            [validateDate, "2026-02-31", false]
+
+            [validateCategory, "Bus Pass", true],
+            [validateCategory, "food1", false],
+
+            [validateDescription, "Lunch at cafeteria", true],
+            [validateDescription, "Lunch", false],
+            [validateDescription, "Lunch  at cafeteria", true],
+
+
+        ];
+
+        let failed=0;
+        for(const [check, value, shouldPass] of tests) {
+            const passed = (check(value) === "") === shouldPass;
+            if(!passed) failed++;
+            const li = document.createElement("li");
+            li.textContent = (passed ? "Pass" : "Fail") + ": " + check.name + ' "' + value + '"';
+            document.getElementById("results").appendChild(li);
+        }
+
+        document.getElementById("summary").textContent = 
+        (tests.length - failed) + " passed, " + failed + " failed";
+
+    </script>
+    
+</body>
+</html>
