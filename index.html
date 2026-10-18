@@ -179,25 +179,242 @@
 
                     <p id="search-error" class="field-message" role="status"></p>
                     <div class="button-row" role="group" aria-label="Example patterns">
-                        <button type="button" data-sort="date">Sort by date</button>
-                        <button type="button" data-sort="amount">Sort by amount</button>
-                        <button type="button" data-sort="category">Sort by category</button>
+                        <button type="button" data-pattern="/\.\d{2}\b/">Cents</button>
+                        <button type="button" data-pattern="/(coffee|tea)/i">Drinks</button>
+                        <button type="button" data-pattern="/\b(\w+)\s+\1\b/">Repeated word</button>
                     </div>
                 </div>
 
-                
+                <div class="button-row" role="group" aria-label="Sort records">
+                    <button type="button" id="sort-date" aria-pressed="true">Date</button>
+                    <button type="button" id="sort-description" aria-pressed="false">Description</button>
+                    <button type="button" id="sort-amount" aria-pressed="false">Amount</button>
+                </div>
 
-                
+                <p id="records-empty" hidden>No transactions match your search criteria.</p>
 
+                <ul class="record-cards">
+                    <li class="record-card">
+                        <h3>Lunch at caffeteria</h3>
+                        <p><span class="label">Amount</span>3,500 FRW</p>
+                        <p><span class="label">Category</span>Food</p>
+                        <p><span class="label">Date</span> <time datetime="2026-10-16">2026-10-16</time></p>
+                        <div class="button-row">
+                            <button type="button" aria-label="Edit Lunch at caffeteria">Edit</button>
+                            <button type="button" aria-label="Delete Lunch at caffeteria">Delete</button>
+                        </div>
+                    </li>
 
-
-
-                
-        
-
+                    <li class="record-card">
+                        <h3>Tea at the library</h3>
+                        <p><span class="label">Amount</span> 800 FRW</p>
+                        <p><span class="label">Category</span> Food</p>
+                        <p><span class="label">Date</span> <time datetime="2026-10-17">2026-10-17</time></p>
+                        <div class="button-row">
+                            <button type="button" aria-label="Edit Tea at the library">Edit</button>
+                            <button type="button" aria-label="Delete Tea at the library">Delete</button>
+                        </div>
+                    </li>
+                </ul>
             
+                <table class="record-table">
+                    <caption>Saved transactions</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Description</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Lunch at caffeteria</td>
+                            <td>3,500 FRW</td>
+                            <td>Food</td>
+                            <td><time datetime="2026-10-16">2026-10-16</time></td>
+                            <td>
+                                <div class="button-row">
+                                    <button type="button" aria-label="Edit Lunch at caffeteria">Edit</button>
+                                    <button type="button" aria-label="Delete Lunch at caffeteria">Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Coffee with friends</td>
+                            <td>1,500 FRW</td>
+                            <td>Food</td>
+                            <td><time datetime="2026-10-16">2026-10-16</time></td>
+                            <td>
+                                <div class="button-row">
+                                    <button type="button" aria-label="Edit Coffee with friends">Edit</button>
+                                    <button type="button" aria-label="Delete Coffee with friends">Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Tea at the library</td>
+                            <td>800 FRW</td>
+                            <td>Food</td>
+                            <td><time datetime="2026-10-17">2026-10-17</time></td>
+                            <td>
+                                <div class="button-row">
+                                    <button type="button" aria-label="Edit Tea at the library">Edit</button>
+                                    <button type="button" aria-label="Delete Tea at the library">Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="add-edit" aria-labelledby="add-edit-heading" hidden>
+                <h2 id="add-edit-heading" tabindex="-1">New Entry</h2>
+                <p class="hint">This form adds a transaction. Editing fills the same fields and the button label changes to Update</p>
+
+                <form id="record-form">
+                    <div class="field">
+                        <label for="description">Description</label>
+                        <input id="description" type="text" name="description" autocomplete="off" aria-describedby="description-error" aria-invalid="false" required>
+                        <p id="description-error" class="field-error"></p>
+                    </div>
+
+                    <div class="field">
+                        <label for="amount">Amount (FRW)</label>
+                        <input id="amount" type="number" name="amount" inputmode="decimal" autocomplete="off" aria-describedby="amount-hint amount-error" aria-invalid="false" required>
+                        <p id="amount-hint" class="field-hint">Use a number such as 3500. Do not start with a zero unless the amount is 0.</p>
+                        <p id="amount-error" class="field-error"></p>
+                    </div>
+
+                    <div class="field">
+                        <label for="date">Date</label>
+                        <input id="date" type="date" name="date" inputmode="numeric" placeholder="YYYY-MM-DD" autocomplete="off" aria-invalid="false" aria-describedby="date-error date-hint" required>
+                        <p id="date-hint" class="field-hint">Enter the date in YYYY-MM-DD format</p>
+                        <p id="date-error" class="field-error"></p>
+                    </div>
+
+                    <div class="field">
+                        <label for="category">Category</label>
+                        <select id="category" name="category" aria-invalid="false" aria-describedby="category-error" required>
+                            <option value="">Choose a category</option>
+                            <option value="Food">Food</option>
+                            <option value="Books">Books</option>
+                            <option value="Transport">Transport</option>
+                            <option value="Entertainment">Entertainment</option>
+                            <option value="Fees">Fees</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <p id="category-error" class="field-error"></p>
+                    </div>
+
+                    <div class="button-row">
+                        <button type="submit" id="record-submit">Add Transaction</button>
+                        <button type="button" id="record-cancel">Cancel</button>
+                    </div>
+                </form>
+            </section>
+
+            <section id="settings" aria-labelledby="settings-heading" hidden>
+                <h2 id="settings-heading" tabindex="-1">Settings</h2>
+
+                <form id="settings-form">
+                    <div class="field">
+                        <label for="spending-cap">Spending cap (FRW)</label>
+                        <input id="spending-cap" type="number" name="spending-cap" inputmode="decimal" value="500000" autocomplete="off">
+                    </div>
+
+                    <fieldset>
+                        <legend>Exchange rates</legend>
+                        <p class="hint">FRW stays at 1. USD and EUR are how many of that currency equal 1 FRW.</p>
+                        <div class="rate-grid">
+
+                        <div class="field">
+                            <label for="rate-frw">FRW</label>
+                            <input id="rate-frw" type="number" name="rate-frw" value="1" readonly>
+                        </div>
+                        <div class="field">
+                            <label for="rate-usd">USD</label>
+                            <input id="rate-usd" type="number" name="rate-usd" inputmode="decimal" value="0.00069" autocomplete="off">
+                        </div>
+                        <div class="field">
+                            <label for="rate-eur">EUR</label>
+                            <input id="rate-eur" type="number" name="rate-eur" inputmode="decimal" value="0.00064" autocomplete="off">
+                        </div>
+
+                        </div>
+                    </fieldset>
+
+                    <div class="field"> 
+                        <label for="display-currency">Display currency</label>
+                        <select id="display-currency" name="display-currency">
+                            <option value="FRW" selected>FRW</option>
+                            <option value="USD">USD</option>
+                            <option value="EUR">EUR</option>
+                        </select>
+                    </div>
+
+                    <fieldset>
+                        <legend>Categories</legend>
+                        <ul id="category-list" class="category-list">
+                            <li>
+                                <span>Food</span>
+                                <button type="button">Remove Food</button>
+                            </li>
+                            <li>
+                                <span>Books</span>
+                                <button type="button">Remove Books</button>
+                            </li>
+                            <li>
+                                <span>Transport</span>
+                                <button type="button">Remove Transport</button>
+                            </li>
+                            <li>
+                                <span>Entertainment</span>
+                                <button type="button">Remove Entertainment</button>
+                            </li>
+                            <li>
+                                <span>Fees</span>
+                                <button type="button">Remove Fees</button>
+                            </li>
+                            <li>
+                                <span>Other</span>
+                                <button type="button">Remove Other</button>
+                            </li>
+                        </ul>
+                        <div class="field">
+                            <label for="new-category">New category</label>
+                            <input id="new-category" type="text" name="new-category" autocomplete="off" aria-describedby="new-category-error" aria-invalid="false">
+                            <p id="new-category-error" class="field-error"></p>
+                        </div>
+                        <button type="button" id="add-category">Add</button>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Backup</legend>
+                        <div class="field">
+                            <label for="import-file">Import JSON</label>
+                            <input id="import-file" type="file" name="import-file" accept="application/json,.json">
+                        </div>
+                        <button type="button" id="export-records">Export</button>
+                    </fieldset>
+
+                    <button type="submit" id="save-settings">Save Settings</button>
+                </form>
+            </section>
         </main>
     </div>
+
+    <footer class="site-footer">
+        <p>Amounts are stored in FRW.</p>
+        <p id="status" class="status" role="status" aria-live="polite"></p>
+    </footer>
+
+    
 
 
     
